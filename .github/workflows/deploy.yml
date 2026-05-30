@@ -1,0 +1,39 @@
+name: DevFlow AI Full-Stack CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ] 
+
+jobs:
+  audit-and-verify:
+    name: 🛡️ CI Quality Gate
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v4
+
+    - name: Initialize Node.js Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install & Verify Backend Environment
+      run: |
+        cd server
+        npm ci
+        
+    - name: Install & Verify Frontend Environment
+      run: |
+        cd client
+        npm ci
+
+  deploy-backend:
+    name: 🚀 CD Backend (Render)
+    needs: audit-and-verify
+    runs-on: ubuntu-latest
+    steps:
+    - name: Trigger Render Microservice Deployment
+      run: |
+        curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"

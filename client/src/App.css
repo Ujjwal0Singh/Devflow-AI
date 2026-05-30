@@ -1,0 +1,207 @@
+/* client/src/App.css */
+
+/* Global text settings */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Form input elements */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+/* Primary functional action buttons */
+button {
+  background: #3b82f6;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+button:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+}
+
+/* Main analyzed data panel cards */
+.issue-card {
+  background: #1e293b;
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 25px;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* System loading messages and logs */
+.status-step {
+  color: #60a5fa;
+  font-size: 0.9rem;
+  margin: 15px 0;
+  font-weight: 500;
+}
+
+/* Original repository description boxes */
+.description-box {
+  margin-top: 25px;
+  padding: 20px;
+  background: #0f172a;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.description-box p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   🔥 FORCE REACT-DIFF-VIEWER DARK THEME COLORS
+   ========================================== */
+
+/* Left Side (Removals/Deletions) Gutter and Line Overrides */
+.diff-display-panel td[class*="gutterRemoved"] {
+  background-color: rgba(239, 68, 68, 0.25) !important;
+  color: #f87171 !important;
+  border-right: 1px solid #ef4444 !important;
+}
+.diff-display-panel td[class*="codeRemoved"] {
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+}
+.diff-display-panel td[class*="codeRemoved"] span,
+.diff-display-panel td[class*="codeRemoved"] pre {
+  background-color: transparent !important;
+  color: #fca5a5 !important;
+}
+
+/* Right Side (Additions/Fixes) Gutter and Line Overrides */
+.diff-display-panel td[class*="gutterAdded"] {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  color: #34d399 !important;
+  border-right: 1px solid #10b981 !important;
+}
+.diff-display-panel td[class*="codeAdded"] {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #a7f3d0 !important;
+}
+.diff-display-panel td[class*="codeAdded"] span,
+.diff-display-panel td[class*="codeAdded"] pre {
+  background-color: transparent !important;
+  color: #a7f3d0 !important;
+}
+
+/* Inline Character Changes (Word-by-word highlights) */
+.diff-display-panel mark[class*="wordRemoved"] {
+  background-color: rgba(239, 68, 68, 0.55) !important;
+  color: #ffffff !important;
+  border-radius: 3px;
+  padding: 1px 2px;
+}
+.diff-display-panel mark[class*="wordAdded"] {
+  background-color: rgba(16, 185, 129, 0.55) !important;
+  color: #ffffff !important;
+  border-radius: 3px;
+  padding: 1px 2px;
+}
+
+/* Clear text layers underneath standard elements */
+.diff-display-panel table span, 
+.diff-display-panel table pre {
+  background: transparent !important;
+}
+
+/* Additional robust selectors to catch multiple class-name patterns and data-attributes
+   used by different versions/forks of react-diff-viewer. These increase specificity
+   and use !important to override inline styles so removed/added lines are visible. */
+.diff-display-panel .react-diff-viewer,
+.diff-display-panel .diffviewer,
+.diff-display-panel [class*="react-diff" i],
+.diff-display-panel [class*="diff-viewer" i] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Generic removed/deleted selectors (covers td/div/span/pre with "removed", "delete" keywords) */
+.diff-display-panel [class*="removed" i],
+.diff-display-panel [class*="remove" i],
+.diff-display-panel [class*="deleted" i],
+.diff-display-panel [data-diff-type="removed" i],
+.diff-display-panel [data-diff-type="delete" i] {
+  background-color: rgba(239, 68, 68, 0.20) !important;
+  color: #ffb4b4 !important;
+  border-left: 3px solid rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Generic added/inserted selectors (covers td/div/span/pre with "added", "insert" keywords) */
+.diff-display-panel [class*="added" i],
+.diff-display-panel [class*="add" i],
+.diff-display-panel [class*="insert" i],
+.diff-display-panel [class*="inserted" i],
+.diff-display-panel [data-diff-type="added" i],
+.diff-display-panel [data-diff-type="inserted" i] {
+  background-color: rgba(16, 185, 129, 0.18) !important;
+  color: #aeffe0 !important;
+  border-left: 3px solid rgba(16, 185, 129, 0.65) !important;
+}
+
+/* Word-level inline highlights (covers mark elements and common class patterns) */
+.diff-display-panel mark[class*="word" i][class*="removed" i],
+.diff-display-panel mark[class*="word" i][class*="remove" i],
+.diff-display-panel mark[class*="wordRemoved" i],
+.diff-display-panel mark[class*="word-delete" i] {
+  background-color: rgba(239, 68, 68, 0.65) !important;
+  color: #fff !important;
+  padding: 1px 3px !important;
+  border-radius: 3px !important;
+}
+.diff-display-panel mark[class*="word" i][class*="added" i],
+.diff-display-panel mark[class*="word" i][class*="insert" i],
+.diff-display-panel mark[class*="wordAdded" i] {
+  background-color: rgba(16, 185, 129, 0.65) !important;
+  color: #fff !important;
+  padding: 1px 3px !important;
+  border-radius: 3px !important;
+}
+
+/* Ensure code text and pre elements are readable on dark background */
+.diff-display-panel pre,
+.diff-display-panel code,
+.diff-display-panel .diff-code,
+.diff-display-panel .react-diff-viewer__code {
+  background: transparent !important;
+  color: inherit !important;
+  white-space: pre !important;
+}
+
+/* Gutter/line number styling fallback to ensure visibility */
+.diff-display-panel [class*="gutter" i],
+.diff-display-panel .react-diff-viewer__gutter,
+.diff-display-panel .diff-gutter {
+  background: transparent !important;
+  color: #94a3b8 !important;
+}
