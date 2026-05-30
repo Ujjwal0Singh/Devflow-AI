@@ -26,7 +26,7 @@ jobs:
     - name: Install & Verify Frontend Environment
       run: |
         cd client
-        npm install
+        npm install --legacy-peer-deps
 
   deploy-backend:
     name: 🚀 CD Backend (Render)
