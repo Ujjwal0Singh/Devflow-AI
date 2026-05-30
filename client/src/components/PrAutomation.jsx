@@ -1,4 +1,3 @@
-// client/src/components/PrAutomation.jsx
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -18,7 +17,7 @@ const PrAutomation = ({ selectedFileFix, issueData }) => {
     setPrLink('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/github-pr/create-pr', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/github-pr/create-pr`, {
         githubToken: githubToken.trim(),
         owner: issueData.owner,
         repo: issueData.repo,

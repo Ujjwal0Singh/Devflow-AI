@@ -6,7 +6,7 @@ const DiffDisplay = ({ fixData }) => {
   return (
     <div className="diff-display-panel" style={{ 
       marginTop: '30px', 
-      background: '#1e293b', /* Dark panel container border card wrapper */
+      background: '#1e293b', 
       color: '#e2e8f0', 
       borderRadius: '12px', 
       padding: '20px',
@@ -28,7 +28,6 @@ const DiffDisplay = ({ fixData }) => {
           />
       </div>
 
-      {/* Small operational micro-copy assistance banner for code presentation clarity */}
       <div style={{ display: 'flex', gap: '15px', marginTop: '12px', fontSize: '11px', color: '#64748b', justifyContent: 'flex-end' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
           <span style={{ width: '8px', height: '8px', background: 'rgba(239,68,68,0.4)', borderRadius: '2px' }}></span> Old Code Baseline (Subtractions)

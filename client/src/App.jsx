@@ -48,7 +48,7 @@ function App() {
     setLoading(true);
     setStatus('Fetching issue and identifying files...');
     try {
-      const res = await axios.post('http://localhost:5000/api/github/fetch-issue', { url });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/github/fetch-issue`, { url });
       const fetchedData = res.data;
       setIssueData(fetchedData);
 
@@ -56,7 +56,7 @@ function App() {
 
       if (!isFreeMode) {
         setStatus('Using Gemini Cloud...');
-        const aiRes = await axios.post('http://localhost:5000/api/ai/identify-files', {
+        const aiRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/ai/identify-files`, {
           issueTitle: fetchedData.title,
           issueBody: fetchedData.body,
           fileTree: fetchedData.fileTree,
@@ -86,7 +86,7 @@ function App() {
     setLoading(true);
     setStatus(`Generating fix for ${filePath}...`);
     try {
-      const contentRes = await axios.post('http://localhost:5000/api/github/get-file-content', {
+      const contentRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/github/get-file-content`, {
         owner: issueData.owner,
         repo: issueData.repo,
         path: filePath
@@ -101,7 +101,7 @@ function App() {
           fixedCode = fixedCode.replace(/```[a-z]*|```/g, "").trim();
       }
       else {
-          const aiRes = await axios.post('http://localhost:5000/api/ai/generate-fix', {
+          const aiRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/ai/generate-fix`, {
               issueTitle: issueData.title,
               issueBody: issueData.body,
               fileContent: originalCode,
@@ -112,7 +112,7 @@ function App() {
       }
 
       setStatus('Passing generated patch through quality checking guardrails...');
-      const guardrailRes = await axios.post('http://localhost:5000/api/guardrail/validate-code', {
+      const guardrailRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/guardrail/validate-code`, {
           fixedCode,
           filePath
       });
@@ -126,8 +126,8 @@ function App() {
 
       console.log("Saving history for User ID:", user?.id);
 
-      await axios.post('http://localhost:5000/api/history/save', {
-        userId: user.id, // This comes from your 'user' state
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/history/save`, {
+        userId: user.id, 
         issueTitle: issueData.title,
         repoName: `${issueData.owner}/${issueData.repo}`,
         filePath: filePath,
@@ -160,14 +160,11 @@ function App() {
 
   return (
     <div className="App" style={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden', margin: 0, padding: 0, background: '#0f172a' }}>
-      
-      {/* 1. History Sidebar Component */}
+   
       <HistorySidebar userId={user.id} onSelectHistory={handleSelectHistory} />
       
-      {/* 2. Main Workspace Layout Area */}
       <div className="main-workspace" style={{ flex: 1, height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#0f172a' }}>
         
-        {/* 🌟 FIXED NAVIGATION BAR CONTAINER */}
         <nav className="top-navbar" style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 
@@ -208,7 +205,6 @@ function App() {
           </button>
         </nav>
         
-        {/* 3. Scrollable Content Container Canvas */}
         <div className="workspace-content" style={{ 
           flex: 1, 
           overflowY: 'auto', 

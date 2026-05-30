@@ -11,8 +11,8 @@ router.post('/fetch-issue', async (req, res) => {
   try {
     const parsedUrl = new URL(url);
     const pathParts = parsedUrl.pathname.split('/'); 
-    const owner = pathParts[1]; // Extracting owner
-    const repo = pathParts[2];   // Extracting repo
+    const owner = pathParts[1]; 
+    const repo = pathParts[2];   
     const issueNumber = pathParts[4];
 
     if(!owner || !repo || !issueNumber){

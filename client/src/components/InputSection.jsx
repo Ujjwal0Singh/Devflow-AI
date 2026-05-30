@@ -17,7 +17,7 @@ const InputSection = ({
             borderRadius: '6px',
             border: 'none',
             cursor: 'pointer',
-            background: !isFreeMode ? '#3b82f6' : '#1e293b', // Blue if active
+            background: !isFreeMode ? '#3b82f6' : '#1e293b', 
             color: 'white'
           }}
           onClick={() => setIsFreeMode(false)}

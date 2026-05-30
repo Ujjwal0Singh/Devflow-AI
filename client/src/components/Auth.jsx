@@ -11,7 +11,7 @@ const Auth = ({onLoginSuccess}) => {
     setError('');
     const endpoint = isSignup ? 'sign-up' : 'login';
     try {
-      const res = await axios.post(`http://localhost:5000/api/auth/${endpoint}`, {email, password});
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/${endpoint}`, {email, password});
       const { token, user: userData } = res.data;
       if(!isSignup){
         localStorage.setItem('token', token);
