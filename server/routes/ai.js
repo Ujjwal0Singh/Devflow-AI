@@ -52,7 +52,8 @@ router.post('/generate-fix', async (req, res) => {
     const model = genAI.getGenerativeModel({model: 'gemini-2.5-flash'});
 
     const prompt = `
-            You are a Senior Machine Learning Engineer. Fix the following bug in the provided code.
+            You are a Senior Software Engineer and also an expert compiler agent. Analyze the provided file and fix 
+            the bug described in the issue context..
             
             ISSUE: ${issueTitle}
             DESCRIPTION: ${issueBody}
@@ -64,9 +65,8 @@ router.post('/generate-fix', async (req, res) => {
             \`\`\`
 
             INSTRUCTION: 
-            Return ONLY the corrected code for the ENTIRE file. 
-            Do not include explanations or markdown blocks. 
-            Just the raw, updated code.
+            Return ONLY the completely updated, runnable source code file. 
+            Do NOT include markdown blocks, backticks (```), or explanations.
     `;
 
     const result = await model.generateContent(prompt);
