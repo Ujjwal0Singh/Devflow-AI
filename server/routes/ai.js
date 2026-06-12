@@ -66,7 +66,7 @@ router.post('/generate-fix', async (req, res) => {
 
             INSTRUCTION: 
             Return ONLY the completely updated, runnable source code file. 
-            Do NOT include markdown blocks, backticks (```), or explanations.
+            Do NOT include markdown blocks, backticks(``), or explanations.
     `;
 
     const result = await model.generateContent(prompt);
