@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import Logo from './components/Logo'; 
+import Logo from './Logo'; 
 import axios from 'axios';
 const Auth = ({onLoginSuccess}) => {
   const [isSignup, setIsSignup] = useState(false);
