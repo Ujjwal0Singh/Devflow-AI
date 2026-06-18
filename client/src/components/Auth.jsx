@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Logo from './components/Logo'; 
 import axios from 'axios';
 const Auth = ({onLoginSuccess}) => {
   const [isSignup, setIsSignup] = useState(false);
@@ -35,6 +36,7 @@ const Auth = ({onLoginSuccess}) => {
 
   return (
     <div className="auth-container" style={{ maxWidth: '400px', margin: '100px auto', padding: '20px', background: '#1e293b', borderRadius: '12px' }}>
+      <Logo size={60} />
       <h2 style={{ textAlign: 'center' }}>{isSignup ? 'Create Account' : 'Welcome Back'}</h2>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         <input 
