@@ -53,7 +53,7 @@ router.post('/generate-fix', async (req, res) => {
 
     const prompt = `
             You are a Senior Software Engineer and also an expert compiler agent. Analyze the provided file and fix 
-            the bug described in the issue context..
+            the bug described in the issue context..You must return the completely updated, runnable source code file enclosed strictly within markdown triple backticks (````). Do not include any conversational text, theory, explanations, or file names outside of these backticks.
             
             ISSUE: ${issueTitle}
             DESCRIPTION: ${issueBody}
